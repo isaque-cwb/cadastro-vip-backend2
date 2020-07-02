@@ -21,7 +21,7 @@ import com.isaqueLourenco.cadastroVip.repositories.IndicadoRepository;
 import com.isaqueLourenco.cadastroVip.repositories.ParceiroRepository;
 
 @SpringBootApplication
-public class CadastroVipApplication implements CommandLineRunner {
+public class CadastroVip2Application implements CommandLineRunner {
 	
 	@Autowired
 	private ParceiroRepository parceiroRepository;
@@ -43,7 +43,7 @@ public class CadastroVipApplication implements CommandLineRunner {
 
 
 	public static void main(String[] args) {
-		SpringApplication.run(CadastroVipApplication.class, args);
+		SpringApplication.run(CadastroVip2Application.class, args);
 	}
 
 	@Override

@@ -26,7 +26,6 @@ public class Carro implements Serializable{
 	private String cor;
 	private String placa;
 	private Integer ano;
-	
 	private String parceiro;
 	
 	@JsonIgnore
@@ -158,7 +157,7 @@ public class Carro implements Serializable{
 		return parceiro;
 	}
 
-	public void setPar(String parceiro) {
+	public void setParceiro(String parceiro) {
 		this.parceiro = parceiro;
 	}
 	

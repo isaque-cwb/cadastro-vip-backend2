@@ -11,42 +11,40 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.isaqueLourenco.cadastroVip.domain.Parceiro;
-import com.isaqueLourenco.cadastroVip.services.ParceiroService;
-
+import com.isaqueLourenco.cadastroVip.domain.Endereco;
+import com.isaqueLourenco.cadastroVip.services.EnderecoService;
 
 @RestController
-@RequestMapping(value = "/parceiro")
-public class ParceiroResource {
+@RequestMapping(value = "/endereco")
+public class EnderecoResource {
 	
-	
-	@Autowired 
-	private ParceiroService service;
+	@Autowired
+	private EnderecoService enderecoService;
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find (@PathVariable Integer id) {
-		Parceiro obj = service.find(id);
+	public ResponseEntity<?> find(@PathVariable Integer id){
+		Endereco obj = enderecoService.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
-
+	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Parceiro obj){
-		obj = service.insert(obj);
+	public ResponseEntity<?> insert(@RequestBody Endereco obj){
+		obj = enderecoService.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Parceiro obj, @PathVariable Integer id){
+	public ResponseEntity<Void> update(@PathVariable Integer id, @RequestBody Endereco obj){
 		obj.setId(id);
-		obj = service.update(obj);
+		obj = enderecoService.update(obj);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> delete(@PathVariable Integer id){
-		service.delete(id);
+	public ResponseEntity<?> delete(@PathVariable Integer id){
+		enderecoService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
-	
+
 }
