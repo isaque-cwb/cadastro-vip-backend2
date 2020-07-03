@@ -1,6 +1,8 @@
 package com.isaqueLourenco.cadastroVip.resources;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.isaqueLourenco.cadastroVip.domain.Carro;
+import com.isaqueLourenco.cadastroVip.dto.CarroDTO;
 import com.isaqueLourenco.cadastroVip.services.CarroService;
 
 @RestController
-@RequestMapping(value = "/carro")
+@RequestMapping(value = "/carros")
 public class CarroResource {
 	
 	
@@ -49,8 +52,12 @@ public class CarroResource {
 		return ResponseEntity.noContent().build();
 	}
 	
-	
-
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<CarroDTO>> findAll(){
+		List<Carro> list = service.findAll();
+		List<CarroDTO> listDto = list.stream().map(obj -> new CarroDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
+	}
 	
 	
 }
